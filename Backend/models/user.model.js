@@ -9,6 +9,13 @@ const userSchema = new Schema({
         unique: true,
         trim: true,
         minlength: 3
+    },
+    mail: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+        minlength: 5
     }
 }, {
     timestamps: true

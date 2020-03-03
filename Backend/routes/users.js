@@ -9,7 +9,8 @@ router.route('/').get((req,res) =>{
 
 router.route('/add').post((req, res) => {
     const username = req.body.username;
-    const newUser = new User({username});
+    const mail = req.body.mail;
+    const newUser = new User({username, mail});
 
     newUser.save()
     .then(() => res.json('User added!'))
@@ -32,6 +33,7 @@ router.route('/update/:id').post((req, res) => {
     User.findById(req.params.id)
     .then(user => {
         user.username = req.body.username;
+        user.mail = req.body.mail;
 
         user.save()
         .then(() => res.json('User updated!'))
