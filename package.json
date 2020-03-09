@@ -7,6 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@hapi/boom": "^9.0.0",
     "@react-native-community/segmented-control": "^1.1.1",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
