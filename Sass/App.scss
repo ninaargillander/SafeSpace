@@ -1,0 +1,20 @@
+
+// npm install node-sass 
+// npm install --dev react-native-sass-transformer 
+// npm install --save-dev babel-plugin-react-native-platform-specific-extensions
+
+@import 'Colors';
+
+.container {
+    flex: 1;
+    background-color: $bgColor;
+  }
+
+ .welcome{
+    font-size: 20;
+  }
+
+  .instructions {
+    color: $textColor;
+    margin-bottom: 5;
+  }

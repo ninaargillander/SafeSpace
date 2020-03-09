@@ -12,6 +12,16 @@
       "ios",
       "android",
       "web"
-    ]
+    ],
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": [
+        "js",
+        "jsx",
+        "scss",
+        "sass"
+      ],
+      "transformer": "node_modules/react-native-sass-transformer/index.js"
+    }
   }
 }
