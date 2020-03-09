@@ -20,9 +20,11 @@ connection.once('open', () => {
 
 const usersRouter = require('./routes/users');
 const messageRouter = require('./routes/messages');
+const conversationRouter = require('./routes/conversations');
 
 app.use('/users', usersRouter); 
 app.use('/messages', messageRouter);
+app.use('/conversations', conversationRouter);
 
 app.listen(port, ()=>{
     console.log(`Server is running on port: ${port}`);

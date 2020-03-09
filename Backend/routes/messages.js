@@ -1,8 +1,14 @@
+//import Conversation from '../models/conversation.model';
+//import Message from '../models/message.model';
+
+
 const router = require('express').Router();
-let Message = require('../models/message.model');
+const Message = require('../models/message.model');
+const Conversation = require('../models/conversation.model');
 var http = require("http").Server(router);
 const io = require('socket.io')(http);
 const bodyParser = require('body-parser');
+
 
 
 router.route('/').get((req,res) => {
@@ -11,12 +17,23 @@ router.route('/').get((req,res) => {
     });
 });
 
-router.route('/').post(async(req,res) => {
-    try{
-        var message = new Message(req.body);
-        var savedMessage = await message.save();
-        console.log('Saved');
 
+router.route('/add').post(async(req,res) => {
+    try{
+        Conversation.findById("5e6659135823742432883a55").then((conversation)=>{
+            var textMessage = new Message({
+                text : req.body.text,
+                userId : req.body.userId,
+            });
+            textMessage.save().then((savedMessage) => {
+                conversation.messages.push(savedMessage);
+                conversation.save();
+                //.then(()=>res.json('Skickat :)'))
+                //.catch(err => res.status(400).json(`Error: ${err}`))
+                console.log('Saved');
+            })
+        })
+        
         io.emit('message', req.body);
         res.sendStatus(200);
     } catch(error) {
