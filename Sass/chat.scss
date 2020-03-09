@@ -1,0 +1,53 @@
+@import 'colors';
+
+$pad: 5;
+$padInput: 20;
+
+.msgRecieved {
+  background-color: $msgRecievedColor;
+  margin-right: auto;
+
+  padding-top: $pad;
+  padding-bottom: $pad;
+  padding-left: $pad;
+  padding-right: $pad;
+}
+
+.msgSent {
+  background-color: $msgSentColor;
+  align-self: flex-end;
+
+  padding-top: $pad;
+  padding-bottom: $pad;
+  padding-left: $pad;
+  padding-right: $pad;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  background-color: $inputBoxColor;
+  color: $whiteTextColor;
+
+  padding-top: $padInput/2;
+  padding-bottom: $padInput/2;
+  padding-left: $padInput;
+  padding-right: $padInput;
+
+  margin-top: auto;
+  align-self: center;
+}
+
+.textInput {
+  height: 30;
+  background-color: $textInputColor;
+  flex-basis: 80%;
+
+  margin-right: 10;
+  border-radius: 10px;
+}
+
+.sendButton {
+}

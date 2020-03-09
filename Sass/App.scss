@@ -1,20 +1,79 @@
-
-// npm install node-sass 
-// npm install --dev react-native-sass-transformer 
+// npm install node-sass
+// npm install --dev react-native-sass-transformer
 // npm install --save-dev babel-plugin-react-native-platform-specific-extensions
 
-@import 'Colors';
+@import 'colors';
+
+$footerButton-padding-vertical: 20;
+$footerButton-padding-hotisonal: 70;
 
 .container {
-    flex: 1;
-    background-color: $bgColor;
-  }
+  flex: 1;
+  background-color: $bgColor;
+  text-align: center;
+  display: flex;
 
- .welcome{
-    font-size: 20;
-  }
+  flex-direction: column;
+}
 
-  .instructions {
-    color: $textColor;
-    margin-bottom: 5;
-  }
+.header {
+  //TODO: Gradient
+  font-size: 40;
+  text-align: center;
+
+  background-color: $header;
+  color: $whiteTextColor;
+
+  padding-top: 10;
+  padding-bottom: 10;
+  margin-top: 37; //(Tas bort sen) Bara för Samsung S10
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+
+  background-color: $footer;
+  color: $whiteTextColor;
+
+  margin-top: auto;
+  // align-self: center;
+  // padding-top: 10;
+  // padding-bottom: 10;
+}
+
+.footerChat {
+  margin-right: auto;
+  margin-left: auto;
+
+  color: $whiteTextColor;
+
+  padding-top: $footerButton-padding-vertical;
+  padding-bottom: $footerButton-padding-vertical;
+  padding-left: $footerButton-padding-hotisonal; //ska ändras
+  padding-right: $footerButton-padding-hotisonal; //ska ändras
+
+  background-color: $footer;
+  text-align: center;
+}
+
+.footerWatch {
+  margin-right: auto;
+  margin-left: auto;
+
+  color: $whiteTextColor;
+
+  padding-top: $footerButton-padding-vertical;
+  padding-bottom: $footerButton-padding-vertical;
+  padding-left: $footerButton-padding-hotisonal; //ska ändras
+  padding-right: $footerButton-padding-hotisonal; //ska ändras
+
+  align-self: flex-end;
+  background-color: $footer;
+}
+
+.instructions {
+  color: $textColor;
+  margin-bottom: 5;
+  text-align: center;
+}
