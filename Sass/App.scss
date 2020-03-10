@@ -8,6 +8,8 @@ $footerButton-padding-vertical: 20;
 $footerButton-padding-hotisonal: 70;
 
 .container {
+  //TODO: Font-family
+
   flex: 1;
   background-color: $bgColor;
   text-align: center;
@@ -18,6 +20,7 @@ $footerButton-padding-hotisonal: 70;
 
 .header {
   //TODO: Gradient
+  display: flex;
   font-size: 40;
   text-align: center;
 
@@ -76,4 +79,9 @@ $footerButton-padding-hotisonal: 70;
   color: $textColor;
   margin-bottom: 5;
   text-align: center;
+}
+
+.backButton {
+  font-size: 15;
+  text-align: left;
 }

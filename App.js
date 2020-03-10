@@ -31,12 +31,20 @@ export default class App extends Component {
     return (
       <KeyboardAvoidingView style={appStyles.container} behavior="padding">
         <Text style={appStyles.header}>{this.state.userName}</Text>
-        <Text style={chatStyles.msgSent}>To get started, edit App.js</Text>
-        <Text style={chatStyles.msgRecieved}>To get started, edit App.js</Text>
+        <Text style={[chatStyles.msgSent, chatStyles.msg]}>
+          To get started, edit App.js
+        </Text>
+        <Text style={[chatStyles.msgRecieved, chatStyles.msg]}>
+          To get started, edit App.js
+        </Text>
 
         <View style={chatStyles.inputBox}>
           <TextInput style={chatStyles.textInput}></TextInput>
-          <Button title="Skicka" style={chatStyles.sendButton}></Button>
+          <Button
+            color="red"
+            title="Skicka"
+            style={chatStyles.sendButton}
+          ></Button>
         </View>
       </KeyboardAvoidingView>
     );

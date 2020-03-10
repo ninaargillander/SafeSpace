@@ -3,24 +3,23 @@
 $pad: 5;
 $padInput: 20;
 
+.msg {
+  padding-top: $pad;
+  padding-bottom: $pad;
+  padding-left: $pad * 2;
+  padding-right: $pad * 2;
+
+  border-radius: 20px;
+}
+
 .msgRecieved {
   background-color: $msgRecievedColor;
   margin-right: auto;
-
-  padding-top: $pad;
-  padding-bottom: $pad;
-  padding-left: $pad;
-  padding-right: $pad;
 }
 
 .msgSent {
   background-color: $msgSentColor;
   align-self: flex-end;
-
-  padding-top: $pad;
-  padding-bottom: $pad;
-  padding-left: $pad;
-  padding-right: $pad;
 }
 
 .inputBox {
