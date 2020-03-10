@@ -8,6 +8,7 @@ import {
   Button,
   KeyboardAvoidingView
 } from 'react-native';
+
 import appStyles from './Sass/app.scss';
 import chatStyles from './Sass/chat.scss';
 

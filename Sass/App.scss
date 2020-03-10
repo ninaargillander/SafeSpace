@@ -6,7 +6,7 @@
 
 $footerButton-padding-vertical: 20;
 $footerButton-padding-hotisonal: 70;
-
+$gradientColors: $bgColor, $header;
 .container {
   //TODO: Font-family
 
@@ -25,6 +25,7 @@ $footerButton-padding-hotisonal: 70;
   text-align: center;
 
   background-color: $header;
+  //@include gradient(top, $gradientColors); //background-color: $header;
   color: $whiteTextColor;
 
   padding-top: 10;
