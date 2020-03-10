@@ -23,7 +23,11 @@ router.route('/add').post(async(req,res) => {
     }
 });
 
-
+router.route('/').get((req,res) => {
+    Conversation.find({}, (err, conversations) => {
+        res.send(conversations);
+    });
+});
 
 
 module.exports = router;
