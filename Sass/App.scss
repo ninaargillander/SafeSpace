@@ -1,6 +1,7 @@
 // npm install node-sass
 // npm install --dev react-native-sass-transformer
 // npm install --save-dev babel-plugin-react-native-platform-specific-extensions
+// npm install expo-linear-gradient
 
 @import 'colors';
 
@@ -19,13 +20,10 @@ $gradientColors: $bgColor, $header;
 }
 
 .header {
-  //TODO: Gradient
   display: flex;
   font-size: 40;
   text-align: center;
 
-  background-color: $header;
-  //@include gradient(top, $gradientColors); //background-color: $header;
   color: $whiteTextColor;
 
   padding-top: 10;

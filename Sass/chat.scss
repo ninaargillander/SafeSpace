@@ -9,7 +9,12 @@ $padInput: 20;
   padding-left: $pad * 2;
   padding-right: $pad * 2;
 
+  margin-top: 1%;
+  margin-left: 3%;
+  margin-right: 3%;
+
   border-radius: 20px;
+  max-width: 50%;
 }
 
 .msgRecieved {
