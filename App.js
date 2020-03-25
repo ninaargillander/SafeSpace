@@ -10,10 +10,65 @@ import {
   FlatList
 } from 'react-native';
 
-import { LinearGradient } from 'expo-linear-gradient';
+import Header from './Components/header.js';
 
 import appStyles from './Sass/app.scss';
 import chatStyles from './Sass/chat.scss';
+
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      userName: 'Kalle Kula',
+      currMsg: '',
+      messages: []
+    };
+
+    this.pressSend = this.pressSend.bind(this);
+  }
+
+  pressSend(text) {
+    console.log(text);
+    this.textInput.clear();
+  }
+  // FlatList, TextInput och Button bör kunna göras till en component (chatView) men det funkar inte nu
+  render() {
+    return (
+      //Finns bättre sätt än <KeyBoardAvoidingView> för att få allt att anpassas då tangentbordet öppnas
+      <KeyboardAvoidingView style={appStyles.container} behavior="padding">
+        <Header title={this.state.userName} />
+
+        <FlatList
+          ref={el => (this.list = el)}
+          data={DATA}
+          renderItem={({ item }) => <Item msg={item} />}
+          keyExtractor={item => item.id}
+          initialScrollIndex={DATA.length - 1} // Gör att man hamnar längst ner i konversationen och får scrolla uppåt, gissar på att det inte kommer funka när data hämtas från db?
+        />
+
+        <View style={chatStyles.inputBox}>
+          <TextInput
+            ref={input => {
+              this.textInput = input;
+            }}
+            style={chatStyles.textInput}
+            onChangeText={currMsg => this.setState({ currMsg })}
+          />
+
+          <Button
+            color="#133b43"
+            title="Skicka"
+            style={chatStyles.sendButton}
+            onPress={() => {
+              this.pressSend(this.state.currMsg);
+            }}
+          />
+        </View>
+      </KeyboardAvoidingView>
+    );
+  }
+}
 
 function Item({ msg }) {
   if (msg.recieved) {
@@ -31,112 +86,46 @@ function Item({ msg }) {
   );
 }
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      userName: 'Kalle Kula',
-      currMsg: '',
-      messages: []
-    };
-
-    this.pressSend = this.pressSend.bind(this);
-  }
-
-  pressSend(text) {
-    console.log(text);
-  }
-
-  loadData = () => {
-    this.setState({
-      messages: DATA
-    });
-  };
-
-  render() {
-    return (
-      //Finns bättre sätt än <KeyBoardAvoidingView> för att få allt att anpassas då tangentbordet öppnas
-      <KeyboardAvoidingView style={appStyles.container} behavior="padding">
-        <LinearGradient
-          // TODO: Få style till scss-fil istället för in-line
-          // Skapa egen component för header??
-          colors={['#276a76', '#eaeaea']}
-          style={{
-            padding: 10,
-            alignItems: 'center',
-            marginTop: 37
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 40,
-              color: '#fff'
-            }}
-          >
-            {this.state.userName}
-          </Text>
-        </LinearGradient>
-
-        <FlatList
-          data={DATA}
-          renderItem={({ item }) => <Item msg={item} />}
-          keyExtractor={item => item.id}
-        />
-
-        <View style={chatStyles.inputBox}>
-          <TextInput
-            style={chatStyles.textInput}
-            onChangeText={currMsg => this.setState({ currMsg })}
-          />
-
-          <Button
-            color="#133b43"
-            title="Skicka"
-            style={chatStyles.sendButton}
-            onPress={() => this.pressSend(this.state.currMsg)}
-          ></Button>
-        </View>
-      </KeyboardAvoidingView>
-    );
-  }
-}
-
 const DATA = [
   {
     message:
-      'To get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo  get started, edit App.jsTo get started, edit App.jsTo get started, edit App.js',
+      'Meddelande 0: To get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo  get started, edit App.jsTo get started, edit App.jsTo get started, edit App.js',
     recieved: true,
     id: 0
   },
   {
     message:
-      'To get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo  get started, edit App.jsTo get started, edit App.jsTo get started, edit App.js',
+      'Meddelande 1: To get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo  get started, edit App.jsTo get started, edit App.jsTo get started, edit App.js',
     recieved: false,
     id: 1
   },
   {
     message:
-      'To get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo  get started, edit App.jsTo get started, edit App.jsTo get started, edit App.js',
+      'Meddelande 2: To get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo  get started, edit App.jsTo get started, edit App.jsTo get started, edit App.js',
     recieved: true,
     id: 2
   },
   {
     message:
-      'To get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo  get started, edit App.jsTo get started, edit App.jsTo get started, edit App.js',
+      'Meddelande 3: To get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo get started, edit App.jsTo  get started, edit App.jsTo get started, edit App.jsTo get started, edit App.js',
     recieved: false,
     id: 3
   },
   {
     message:
-      'To get started, edit App.jsTo  get started, edit App.jsTo get started, edit App.jsTo get started, edit App.js',
+      'Meddelande 4: To get started, edit App.jsTo  get started, edit App.jsTo get started, edit App.jsTo get started, edit App.js',
     recieved: true,
     id: 4
   },
   {
     message:
-      'To get started, edit App.jsTo  get started, edit App.jsTo get started, edit App.jsTo get started, edit App.js',
+      'Meddelande 5: To get started, edit App.jsTo  get started, edit App.jsTo get started, edit App.jsTo get started, edit App.js',
     recieved: true,
     id: 5
+  },
+  {
+    message: 'Meddelande 6: To gets',
+    recieved: false,
+    id: 6
   }
 ];

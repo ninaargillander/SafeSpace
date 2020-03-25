@@ -7,7 +7,7 @@
 
 $footerButton-padding-vertical: 20;
 $footerButton-padding-hotisonal: 70;
-$gradientColors: $bgColor, $header;
+
 .container {
   //TODO: Font-family
 
@@ -19,17 +19,29 @@ $gradientColors: $bgColor, $header;
   flex-direction: column;
 }
 
-.header {
-  display: flex;
-  font-size: 40;
-  text-align: center;
+/***************************** Header start ****************************************/
+.headerText {
+  font-size: 35;
 
   color: $whiteTextColor;
-
-  padding-top: 10;
-  padding-bottom: 10;
-  margin-top: 37; //(Tas bort sen) Bara för Samsung S10
 }
+
+.backBtn {
+  padding-top: 20;
+  font-size: 40;
+}
+
+.headerGradient {
+  padding-top: 12;
+  padding-bottom: 12;
+
+  justify-content: center;
+  margin-top: 37;
+  display: flex;
+  flex-direction: row;
+}
+
+/***************************** Header end ****************************************/
 
 .footer {
   display: flex;
@@ -39,9 +51,6 @@ $gradientColors: $bgColor, $header;
   color: $whiteTextColor;
 
   margin-top: auto;
-  // align-self: center;
-  // padding-top: 10;
-  // padding-bottom: 10;
 }
 
 .footerChat {
@@ -72,15 +81,4 @@ $gradientColors: $bgColor, $header;
 
   align-self: flex-end;
   background-color: $footer;
-}
-
-.instructions {
-  color: $textColor;
-  margin-bottom: 5;
-  text-align: center;
-}
-
-.backButton {
-  font-size: 15;
-  text-align: left;
 }
