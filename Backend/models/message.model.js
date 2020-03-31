@@ -8,6 +8,7 @@ const messageSchema = new Schema({
     default: Date.now,
   },
   userId: Object,
+  conversationId: {type: String, required: true,},
 });
 
 const Message = mongoose.model('Message', messageSchema);

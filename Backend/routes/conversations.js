@@ -29,5 +29,10 @@ router.route('/').get((req,res) => {
     });
 });
 
+router.route('/:id').get((req, res) => {
+    Conversation.findById(req.params.id, (err, conversation) => {
+        res.send(conversation);
+    });
+});
 
 module.exports = router;
