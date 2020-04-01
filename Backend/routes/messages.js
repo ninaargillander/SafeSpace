@@ -37,11 +37,5 @@ router.route('/add').post((req,res) => {
     }
 });
 
-router.route('/:id').delete((req, res) => {
-    Message.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Message deleted'))
-    .catch(err => res.status(400).json(`Error: ${err}`))
-});
-
 
 module.exports = router;

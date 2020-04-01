@@ -5,7 +5,7 @@ var http = require("http").Server(router);
 const io = require('socket.io')(http);
 const bodyParser = require('body-parser');
 const User = require('../models/user.model');
-
+var printa = "";
 
 router.route('/add').post(async(req,res) => {
     try{
@@ -34,5 +34,17 @@ router.route('/:id').get((req, res) => {
         res.send(conversation);
     });
 });
+
+router.route('/:id/messages').get((req, res) => {
+    Conversation.findById(req.params.id, (err, conversation) => {
+        Message.find({_id: {$in: conversation.messages}}, (err, messages) => {
+            
+            messages.forEach(message => printa += (`Meddelande: ${message.text} | Avsändare: ${message.userId} <br>`));
+            res.send(printa);
+            printa = "";
+        });
+    });
+});
+
 
 module.exports = router;
