@@ -32,6 +32,7 @@ export default class App extends Component {
     console.log(text);
     this.textInput.clear();
   }
+
   // FlatList, TextInput och Button bör kunna göras till en component (chatView) men det funkar inte nu
   render() {
     return (
