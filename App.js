@@ -34,16 +34,12 @@ export default class App extends Component {
   async componentDidMount() {
     try {
       const callChatApi = await fetch(
-        'http://localhost:8000/conversations/5e68c508c18e2a00ee6bf0f8'
+        'http://192.168.1.207:8000/conversations/5e68c508c18e2a00ee6bf0f8'
       );
-      console.log('call chat api: ' + callChatApi);
 
       callChatApi.json().then(data => {
-        console.log('Meddelande: ' + data[5].text);
+        this.setState({ messages: data, loading: false });
       });
-
-      const chat = await callChatApi.json();
-      this.setState({ messages: callChatApi, loading: false });
     } catch (err) {
       console.log('Error fetching data', err);
     }
@@ -52,8 +48,8 @@ export default class App extends Component {
   pressSend(text) {
     console.log(text);
     this.textInput.clear();
-    //console.log('I pressSend' + this.state.messages);
   }
+
   // FlatList, TextInput och Button bör kunna göras till en component (chatView) men det funkar inte nu
   render() {
     return (
@@ -63,10 +59,10 @@ export default class App extends Component {
 
         <FlatList
           ref={el => (this.list = el)}
-          data={DATA}
+          data={this.state.messages}
           renderItem={({ item }) => <Item msg={item} />}
           keyExtractor={item => item.id}
-          initialScrollIndex={DATA.length - 1} // Gör att man hamnar längst ner i konversationen och får scrolla uppåt, gissar på att det inte kommer funka när data hämtas från db?
+          initialScrollIndex={9 - 1} // Gör att man hamnar längst ner i konversationen och får scrolla uppåt, gissar på att det inte kommer funka när data hämtas från db?
         />
 
         <View style={chatStyles.inputBox}>
@@ -93,17 +89,17 @@ export default class App extends Component {
 }
 
 function Item({ msg }) {
-  if (msg.recieved) {
+  if (true) {
     return (
       <View style={[chatStyles.msg, chatStyles.msgRecieved]}>
-        <Text>{msg.message}</Text>
+        <Text>{msg.text}</Text>
       </View>
     );
   }
 
   return (
     <View style={[chatStyles.msg, chatStyles.msgSent]}>
-      <Text>{msg.message}</Text>
+      <Text>{msg.text}</Text>
     </View>
   );
 }
