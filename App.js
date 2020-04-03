@@ -16,7 +16,7 @@ import Header from './Components/header.js';
 import appStyles from './Sass/App.scss';
 import chatStyles from './Sass/chat.scss';
 
-import getConversation from './Backend/server';
+//import getConversation from './Backend/server';
 
 export default class App extends Component {
   constructor(props) {
@@ -25,17 +25,31 @@ export default class App extends Component {
     this.state = {
       userName: 'Kalle Kula',
       currMsg: '',
-      messages: []
+      messages: [],
+      response: '',
+      loading: true
     };
 
     this.pressSend = this.pressSend.bind(this);
+  }
+  async componentDidMount() {
+    try {
+      const callChatApi = await fetch(
+        'http://localhost:8000/conversations/5e68c508c18e2a00ee6bf0f8'
+      );
+      console.log('call chat api: ' + callChatApi);
+      //const chat = await callChatApi.json();
+      // this.setState({ messages: callChatApi, loading: false });
+    } catch (err) {
+      console.log('Error fetching data', err);
+    }
   }
 
   pressSend(text) {
     console.log(text);
     this.textInput.clear();
+    //console.log('I pressSend' + this.state.messages);
   }
-
   // FlatList, TextInput och Button bör kunna göras till en component (chatView) men det funkar inte nu
   render() {
     return (

@@ -33,7 +33,7 @@ app.use('/users', usersRouter);
 app.use('/messages', messageRouter);
 app.use('/conversations', conversationRouter);
 
-function getConversation(url) {
+/*function getConversation(url) {
   const apiURL = `http://localhost:8000/conversations/`;
 
   fetch(apiURL + url)
@@ -43,7 +43,7 @@ function getConversation(url) {
     })
     .catch(error => console.error(error));
   return;
-}
+}*/
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);

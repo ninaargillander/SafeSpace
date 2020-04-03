@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 3896,
-  "expoServerNgrokUrl": "https://cx-zzt.ninaargillander.safespace.exp.direct",
-  "packagerNgrokUrl": "https://packager.cx-zzt.ninaargillander.safespace.exp.direct",
-  "ngrokPid": 10288,
+  "packagerPid": 18788,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "webpackServerPort": null
 }
