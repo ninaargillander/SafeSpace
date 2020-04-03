@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 
-import appStyles from '../Sass/app.scss';
+import appStyles from '../Sass/App.scss';
 
 import { LinearGradient } from 'expo-linear-gradient';
 

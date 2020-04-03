@@ -13,8 +13,10 @@ import {
 
 import Header from './Components/header.js';
 
-import appStyles from './Sass/app.scss';
+import appStyles from './Sass/App.scss';
 import chatStyles from './Sass/chat.scss';
+
+import getConversation from './Backend/server';
 
 export default class App extends Component {
   constructor(props) {
