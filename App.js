@@ -39,10 +39,8 @@ export default class App extends Component {
       );
       console.log('call chat api: ' + callChatApi);
       callChatApi.json().then(data => {
-        console.log("Meddelande: " + data[5].text);
+        this.setState({ messages: data, loading: false });
       });
-      const chat = await callChatApi.json();
-      this.setState({ messages: callChatApi, loading: false });
     } catch (err) {
       console.log('Error fetching data', err);
     }
@@ -62,10 +60,10 @@ export default class App extends Component {
 
         <FlatList
           ref={el => (this.list = el)}
-          data={DATA}
+          data={this.state.messages}
           renderItem={({ item }) => <Item msg={item} />}
           keyExtractor={item => item.id}
-          initialScrollIndex={DATA.length - 1} // Gör att man hamnar längst ner i konversationen och får scrolla uppåt, gissar på att det inte kommer funka när data hämtas från db?
+          //initialScrollIndex={DATA.length - 1} // Gör att man hamnar längst ner i konversationen och får scrolla uppåt, gissar på att det inte kommer funka när data hämtas från db?
         />
 
         <View style={chatStyles.inputBox}>
@@ -102,7 +100,7 @@ function Item({ msg }) {
 
   return (
     <View style={[chatStyles.msg, chatStyles.msgSent]}>
-      <Text>{msg.message}</Text>
+      <Text>{msg.text}</Text>
     </View>
   );
 }
