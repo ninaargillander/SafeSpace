@@ -38,8 +38,11 @@ export default class App extends Component {
         'http://localhost:8000/conversations/5e68c508c18e2a00ee6bf0f8'
       );
       console.log('call chat api: ' + callChatApi);
-      //const chat = await callChatApi.json();
-      // this.setState({ messages: callChatApi, loading: false });
+      callChatApi.json().then(data => {
+        console.log("Meddelande: " + data[5].text);
+      });
+      const chat = await callChatApi.json();
+      this.setState({ messages: callChatApi, loading: false });
     } catch (err) {
       console.log('Error fetching data', err);
     }
@@ -92,7 +95,7 @@ function Item({ msg }) {
   if (msg.recieved) {
     return (
       <View style={[chatStyles.msg, chatStyles.msgRecieved]}>
-        <Text>{msg.message}</Text>
+        <Text>{msg.text}</Text>
       </View>
     );
   }

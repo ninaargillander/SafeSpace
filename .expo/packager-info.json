@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 18788,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
-  "webpackServerPort": null
+  "packagerPort": 19003,
+  "packagerPid": 4810,
+  "expoServerNgrokUrl": "https://c4-i6s.jhamn.safespace.exp.direct",
+  "packagerNgrokUrl": "https://packager.c4-i6s.jhamn.safespace.exp.direct",
+  "ngrokPid": 4821,
+  "webpackServerPort": 19006
 }
