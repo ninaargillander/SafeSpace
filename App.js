@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import io from 'socket.io-client';
 
 import {
   Platform,
@@ -17,8 +18,14 @@ import appStyles from './Sass/app.scss';
 import chatStyles from './Sass/chat.scss';
 
 export default class App extends Component {
+
+
   constructor(props) {
     super(props);
+    this.socket = io('http://192.168.10.159:8000');
+    this.socket.emit('init', {
+      senderId: "5e843ddbbd8a99081cd3f613",
+    });
 
     this.state = {
       userName: 'Kalle Kula',

@@ -1,14 +1,19 @@
 const express = require('express');
+const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io').listen(server);
+require('dotenv').config();
+const port = process.env.PORT || 8000;
+
 const cors = require('cors');
 const mongoose = require('mongoose'); 
 
-require('dotenv').config();
-
-const app = express();
-const port = process.env.PORT || 8000;
-
 app.use(cors());
 app.use(express.json());
+
+
+
+
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {useNewUrlParser : true, useCreateIndex : true, useUnifiedTopology: true});
@@ -26,7 +31,33 @@ app.use('/users', usersRouter);
 app.use('/messages', messageRouter);
 app.use('/conversations', conversationRouter);
 
-app.listen(port, ()=>{
+
+
+
+
+
+
+
+const sockets = {};
+
+io.on('connection', (socket) => {
+    console.log('A user connected...');
+    socket.on('init', (userId) => {
+        console.log('init: ' + userId.senderId);
+        sockets[userId.senderId] = socket;
+    });
+
+});
+
+
+
+
+
+
+
+
+
+server.listen(port, ()=>{
     console.log(`Server is running on port: ${port}`);
 });
 
