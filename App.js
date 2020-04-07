@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import io from 'socket.io-client';
 
 import {
   Platform,
@@ -24,12 +25,27 @@ export default class App extends Component {
 
     this.state = {
       userName: 'Kalle Kula',
-      currMsg: '',
-      messages: [],
-      response: ''
+      currMsg: {
+        text: '',
+        conversationId: 'conversationId' //HÄR ÄR VI
+      },
+      messages: []
     };
 
-    this.pressSend = this.pressSend.bind(this);
+    this.submitChatMessage = this.submitChatMessage.bind(this);
+  }
+
+  componentDidMount() {
+    this.socket = io('http://192.168.10.159:8000');
+    this.socket.emit('init', {
+      senderId: '5e843ddbbd8a99081cd3f613'
+    });
+  }
+
+  componentWillUnmount() {
+    this.socket.emit('disconnect', {
+      senderId: '5e843ddbbd8a99081cd3f613'
+    });
   }
   async componentDidMount() {
     try {
@@ -45,8 +61,10 @@ export default class App extends Component {
     }
   }
 
-  pressSend(text) {
-    console.log(text);
+  submitChatMessage() {
+    this.socket.emit('message', this.state.currMsg);
+    console.log(`Message sent: ${this.state.currMsg}`);
+    this.setState({ currMsg: '' });
     this.textInput.clear();
   }
 
@@ -79,7 +97,7 @@ export default class App extends Component {
             title="Skicka"
             style={chatStyles.sendButton}
             onPress={() => {
-              this.pressSend(this.state.currMsg);
+              this.submitChatMessage(this.state.currMsg);
             }}
           />
         </View>
