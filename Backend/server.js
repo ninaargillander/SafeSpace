@@ -46,7 +46,7 @@ io.on('connection', (socket) => {
         if (sockets[message.receiverId]) {
           sockets[message.receiverId].emit('message', message);
         }
-        app.use('messages/add', (message));
+        //app.use('messages/add', (message));
         //handlers.createMessage(message);
       });
       socket.on('disconnect', (userId) => {

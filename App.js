@@ -25,10 +25,7 @@ export default class App extends Component {
 
     this.state = {
       userName: 'Kalle Kula',
-      currMsg: {
-        text: "",
-        conversationId: "conversationId", //HÄR ÄR VI 
-      },
+      currMsg: "",
       messages: []
     };
 
