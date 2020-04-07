@@ -62,7 +62,7 @@ export default class App extends Component {
           data={this.state.messages}
           renderItem={({ item }) => <Item msg={item} />}
           keyExtractor={item => item.id}
-          initialScrollIndex={9 - 1} // Gör att man hamnar längst ner i konversationen och får scrolla uppåt, gissar på att det inte kommer funka när data hämtas från db?
+          //initialScrollIndex={DATA.length - 1} // Gör att man hamnar längst ner i konversationen och får scrolla uppåt, gissar på att det inte kommer funka när data hämtas från db?
         />
 
         <View style={chatStyles.inputBox}>
