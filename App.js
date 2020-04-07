@@ -22,22 +22,36 @@ export default class App extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      userName: 'Kalle Kula',
+      currMsg: {
+        text: "",
+        conversationId: "conversationId", //HÄR ÄR VI 
+      },
+      messages: []
+    };
+
+    this.submitChatMessage = this.submitChatMessage.bind(this);
+  }
+
+  componentDidMount() {
     this.socket = io('http://192.168.10.159:8000');
     this.socket.emit('init', {
       senderId: "5e843ddbbd8a99081cd3f613",
     });
-
-    this.state = {
-      userName: 'Kalle Kula',
-      currMsg: '',
-      messages: []
-    };
-
-    this.pressSend = this.pressSend.bind(this);
   }
 
-  pressSend(text) {
-    console.log(text);
+  componentWillUnmount() {
+    this.socket.emit('disconnect', {
+      senderId: "5e843ddbbd8a99081cd3f613",
+    });
+  }
+
+  submitChatMessage() {
+    this.socket.emit('message', this.state.currMsg);
+    console.log(`Message sent: ${this.state.currMsg}`);
+    this.setState({ currMsg: "" });
     this.textInput.clear();
   }
 
@@ -70,7 +84,7 @@ export default class App extends Component {
             title="Skicka"
             style={chatStyles.sendButton}
             onPress={() => {
-              this.pressSend(this.state.currMsg);
+              this.submitChatMessage(this.state.currMsg);
             }}
           />
         </View>

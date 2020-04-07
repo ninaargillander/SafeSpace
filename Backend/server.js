@@ -33,20 +33,26 @@ app.use('/conversations', conversationRouter);
 
 
 
-
-
-
-
-
 const sockets = {};
 
 io.on('connection', (socket) => {
     console.log('A user connected...');
     socket.on('init', (userId) => {
-        console.log('init: ' + userId.senderId);
+        console.log('UserID: ' + userId.senderId);
         sockets[userId.senderId] = socket;
     });
-
+    socket.on('message', (message) => {
+        console.log(`Message recieved in server: ${message}`);
+        if (sockets[message.receiverId]) {
+          sockets[message.receiverId].emit('message', message);
+        }
+        app.use('messages/add', (message));
+        //handlers.createMessage(message);
+      });
+      socket.on('disconnect', (userId) => {
+        console.log(`User disconnected: ${userId.senderId}`);
+        delete sockets[userId.senderId];
+      });
 });
 
 
